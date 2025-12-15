@@ -34,6 +34,9 @@ export default function Footer() {
       localStorage.setItem('theme', 'dark');
       setIsDark(true);
     }
+    
+    // Дополнительно: можно вызвать глобальное событие
+    window.dispatchEvent(new Event('themechange'));
   };
 
   const SunIcon = () => (
