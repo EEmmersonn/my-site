@@ -7,4 +7,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  animation: {
+  'fadeInUp': 'fadeInUp 0.8s ease-out forwards'
+}
 }

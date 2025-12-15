@@ -3,7 +3,7 @@ import { FadeIn } from '../common/fade-in';
 
 export default function Biography() {
   return (
-    <section id="bio" className="w-full py-20 md:py-32 lg:py-40">
+    <section id="bio" className="w-full py-20 md:py-32 lg:py-40 ">
       <FadeIn>
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">

@@ -1,5 +1,6 @@
+//src\components\modal\ProjectModal.tsx
 import { useState, useEffect } from 'react';
-import { X, Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Play, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { PortfolioProject } from '../../lib/data-ru';
 import { getAllProjectImages } from '../../lib/image-utils';
 
@@ -62,6 +63,17 @@ export default function ProjectModal({ project, onCloseAction }: ProjectModalPro
               <h2 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">
                 {project.title}
               </h2>
+            <div className="flex items-center gap-2 mt-2">
+              <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+              <span className="text-gray-700 dark:text-gray-300 font-medium">
+                {project.date}
+              </span>
+              {project.isUpcoming && (
+                <span className="ml-2 px-3 py-1 bg-primary text-primary-foreground text-sm font-semibold rounded-full">
+                  Предстоящий проект
+                </span>
+              )}
+            </div>
               <div className="flex items-center gap-2 mt-1 md:mt-2">
                 <span className={`px-2 py-1 text-xs rounded ${
                   isShowingFirstImage 
