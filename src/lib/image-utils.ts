@@ -1,42 +1,43 @@
+//src\lib\image-utils.ts
+
 // Простая утилита для работы с изображениями в CRA
 // В CRA все пути начинаются от public папки
+
+// Всё должно начинаться с /my-site/ для GitHub Pages
+const BASE_PATH = '/my-site';
 
 // Статический список проектов
 const PROJECT_IMAGES: Record<string, { poster: string; carousel: string[] }> = {
   'project-1': {
-    poster: '/images/portfolio/project-1/poster.jpg',
+    poster: `${BASE_PATH}/images/portfolio/project-1/poster.jpg`,
     carousel: [
-      '/images/portfolio/project-1/carousel/photo1.jpg',
-      '/images/portfolio/project-1/carousel/photo2.jpg',
+      `${BASE_PATH}/images/portfolio/project-1/carousel/photo1.jpg`,
+      `${BASE_PATH}/images/portfolio/project-1/carousel/photo2.jpg`,
     ]
   },
   'project-2': {
-    poster: '/images/portfolio/project-2/poster.jpg',
+    poster: `${BASE_PATH}/images/portfolio/project-2/poster.jpg`,
     carousel: [] // Нет фото в карусели
   }
 };
 
 // Дефолтные изображения
-const DEFAULT_POSTER = '/images/portfolio/default-poster.jpg';
-const DEFAULT_PROJECT_IMAGE = '/images/portfolio/default.jpg';
+const DEFAULT_POSTER = `${BASE_PATH}/images/portfolio/default-poster.jpg`;
+const DEFAULT_PROJECT_IMAGE = `${BASE_PATH}/images/portfolio/default.jpg`;
 
 export const getProjectPoster = (projectId: string): string => {
-  // Проверяем, есть ли проект в статическом списке
   if (PROJECT_IMAGES[projectId]?.poster) {
     return PROJECT_IMAGES[projectId].poster;
   }
   
-  // Возвращаем дефолтный постер для неизвестных проектов
   return DEFAULT_POSTER;
 };
 
 export const getProjectCarouselImages = (projectId: string): string[] => {
-  // Проверяем, есть ли проект в статическом списке
   if (PROJECT_IMAGES[projectId]?.carousel) {
     return PROJECT_IMAGES[projectId].carousel;
   }
   
-  // Для неизвестных проектов возвращаем дефолтное изображение
   return [DEFAULT_PROJECT_IMAGE];
 };
 
@@ -90,7 +91,7 @@ export const getProjectInfo = (projectId: string) => {
 
 // Получение аватарки
 export const getAvatar = (): string => {
-  return '/images/Avatar.jpg';
+  return `${BASE_PATH}/images/Avatar.jpg`;
 };
 
 // Получение дефолтного изображения проекта

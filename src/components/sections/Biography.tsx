@@ -18,7 +18,7 @@ export default function Biography() {
             </div>
             <div className="flex justify-center lg:justify-end">
               <img
-                src="/images/Avatar.jpg"
+                src="/my-site/images/Avatar.jpg"
                 alt="Фото разработчика"
                 className="w-[400px] h-[400px] rounded-full object-cover aspect-square shadow-2xl shadow-primary/20"
               />
