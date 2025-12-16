@@ -1,6 +1,6 @@
 //src\components\sections\Portfolio.tsx
 import { useState } from 'react';
-import { portfolioProjects, PortfolioProject } from '../../lib/data-ru';
+import { portfolioProjects, PortfolioProject, isProjectComingSoon } from '../../lib/data-ru';
 import { ArrowRight, Calendar  } from 'lucide-react';
 import { FadeIn } from '../common/fade-in';
 import ProjectModal from '../modal/ProjectModal';
@@ -37,12 +37,13 @@ export default function Portfolio() {
                           </span>
                         </div>
                       )}
-                      
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10" />
                       <img
                         src={projectImageUrl}
                         alt={project.title}
                         className="object-contain w-full aspect-video group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy" 
+                        decoding="async"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = '/my-site/images/portfolio/default-poster.jpg';
                         }}
@@ -55,7 +56,7 @@ export default function Portfolio() {
                         <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
                           <Calendar className="h-4 w-4" />
                           <span>{project.date}</span>
-                          {project.isUpcoming && (
+                          {isProjectComingSoon(project.date) && (
                             <span className="ml-2 px-2 py-0.5 bg-primary/20 text-primary text-xs rounded-full">
                               Скоро
                             </span>

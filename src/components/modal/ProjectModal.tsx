@@ -19,10 +19,14 @@ export default function ProjectModal({ project, onCloseAction }: ProjectModalPro
       setCurrentImageIndex(0);
       return;
     }
-    
     const images = getAllProjectImages(project.id);
     setAllImages(images);
     setCurrentImageIndex(0);
+    // Предзагрузка первого изображения
+    if (images.length > 0) {
+      const img = new Image();
+      img.src = images[0];
+    }
   }, [project]);
   
   if (!project) return null;
@@ -97,7 +101,6 @@ export default function ProjectModal({ project, onCloseAction }: ProjectModalPro
               <X className="h-5 w-5 md:h-6 md:w-6 text-gray-700 dark:text-gray-300" />
             </button>
           </div>
-          
           <div className="mb-4 md:mb-6 relative">
             {allImages.length > 0 ? (
               <div className="relative">
@@ -107,7 +110,6 @@ export default function ProjectModal({ project, onCloseAction }: ProjectModalPro
                     alt={currentImageAlt}
                     className="w-full h-full object-contain"
                   />
-                  
                   {hasMultipleImages && (
                     <>
                       <button
@@ -127,7 +129,6 @@ export default function ProjectModal({ project, onCloseAction }: ProjectModalPro
                     </>
                   )}
                 </div>
-                
                 {hasMultipleImages && allImages.length > 1 && (
                   <div className="flex gap-1 md:gap-2 mt-2 md:mt-4 overflow-x-auto py-2 px-1">
                     {allImages.map((image, index) => (
@@ -159,7 +160,6 @@ export default function ProjectModal({ project, onCloseAction }: ProjectModalPro
               </div>
             )}
           </div>
-          
           {project.fulldescription && (
             <div className="mb-4 md:mb-6">
               <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">
@@ -172,7 +172,6 @@ export default function ProjectModal({ project, onCloseAction }: ProjectModalPro
               </div>
             </div>
           )}
-          
           {project.videolink && project.videolink.trim() !== "" && (
             <div className="mb-4">
               <a

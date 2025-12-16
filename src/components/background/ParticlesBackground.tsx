@@ -11,16 +11,13 @@ export default function ParticlesBackground() {
     const checkTheme = () => {
       setIsDark(document.documentElement.classList.contains('dark'));
     };
-    
     checkTheme();
-    
     // Слушаем изменения темы
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class']
     });
-    
     return () => observer.disconnect();
   }, []);
   
@@ -39,7 +36,6 @@ export default function ParticlesBackground() {
           : 'bg-gradient-to-br from-white via-rose-50 to-orange-50'
         }
       `} />
-      
       {/* Адаптивные частицы */}
       <Particles
         init={particlesInit}

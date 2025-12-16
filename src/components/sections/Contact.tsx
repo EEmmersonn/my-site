@@ -1,6 +1,8 @@
+//src\components\sections\Contact.tsx
+import React from 'react'; // ← Добавить
 import { personalInfo, socialLinks } from '../../lib/data-ru';
 
-export default function Contact() {
+function ContactComponent() {
   return (
     <section id="contact" className="py-16 px-4">
       <div className="container mx-auto max-w-4xl">
@@ -10,7 +12,6 @@ export default function Contact() {
             Свяжитесь со мной удобным способом
           </p>
         </div>
-        
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {socialLinks.map((link) => {
             const Icon = link.icon;
@@ -38,3 +39,6 @@ export default function Contact() {
     </section>
   );
 }
+
+const Contact = React.memo(ContactComponent); // ← Мемоизация
+export default Contact;

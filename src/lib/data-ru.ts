@@ -61,3 +61,23 @@ export const navLinks = [
   { name: 'Постановки', href: '#portfolio' },
   { name: 'Контакты', href: '#contact' },
 ];
+
+export const isProjectComingSoon = (dateString: string): boolean => {
+  try {
+    // Парсим дату в формате "DD.MM.YYYY"
+    const [datePart] = dateString.split(', ');
+    const [day, month, year] = datePart.split('.').map(Number);
+    const projectDate = new Date(year, month - 1, day);
+    const now = new Date();
+    // Проверяем, что дата проекта в будущем
+    if (projectDate <= now) return false;
+    // Вычисляем разницу в миллисекундах
+    const diffTime = projectDate.getTime() - now.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    // Если осталось меньше 30 дней - это "скоро"
+    return diffDays <= 30;
+  } catch (error) {
+    console.error('Ошибка при парсинге даты:', dateString, error);
+    return false;
+  }
+};

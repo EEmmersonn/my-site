@@ -1,7 +1,10 @@
+//src\components\sections\Biography.tsx
+import React from 'react';
 import { personalInfo } from '../../lib/data-ru';
 import { FadeIn } from '../common/fade-in';
 
-export default function Biography() {
+// Создаем компонент с мемоизацией
+function BiographyComponent() {
   return (
     <section id="bio" className="w-full py-20 md:py-32 lg:py-40 ">
       <FadeIn>
@@ -21,6 +24,8 @@ export default function Biography() {
                 src="/my-site/images/Avatar.jpg"
                 alt="Фото разработчика"
                 className="w-[400px] h-[400px] rounded-full object-cover aspect-square shadow-2xl shadow-primary/20"
+                loading="lazy" // ← Добавлена ленивая загрузка
+                decoding="async" // ← Оптимизация декодирования
               />
             </div>
           </div>
@@ -29,3 +34,9 @@ export default function Biography() {
     </section>
   );
 }
+
+// Обертываем компонент в React.memo для мемоизации
+const Biography = React.memo(BiographyComponent);
+
+// Экспортируем мемоизированную версию
+export default Biography;
